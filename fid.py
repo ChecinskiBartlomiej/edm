@@ -86,6 +86,22 @@ def calculate_fid_from_inception_stats(mu, sigma, mu_ref, sigma_ref):
     return float(np.real(fid))
 
 #----------------------------------------------------------------------------
+# NEW: Calculate FID from in-memory images
+
+def load_inception_network(path, device):
+    if dist.get_rank() != 0:
+        torch.distributed.barrier()
+
+    dist.print0(f'Loading Inception detector from "{path}"...')
+    with open(path, "rb") as f:
+        net = pickle.load(f).to(device).eval()
+
+    if dist.get_rank() == 0:
+        torch.distributed.barrier()
+    return net
+
+
+#----------------------------------------------------------------------------
 
 @click.group()
 def main():

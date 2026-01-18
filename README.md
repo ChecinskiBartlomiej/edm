@@ -1,3 +1,5 @@
+![Reproduction of EDM Table 2 rows A and F](assets/table2_repro_A_F-1.png)
+
 ## Elucidating the Design Space of Diffusion-Based Generative Models (EDM)<br><sub>Official PyTorch implementation of the NeurIPS 2022 paper</sub>
 
 ![Teaser image](./docs/teaser-1920x640.jpg)

@@ -309,6 +309,64 @@ def main(network_pkl, outdir, subdirs, seeds, class_idx, max_batch_size, device=
     dist.print0('Done.')
 
 #----------------------------------------------------------------------------
+# NEW: Generate images in-memory without saving to disk
+
+def load_edm_network(network_pkl, device):
+    """Load EDM network once per process."""
+    if dist.get_rank() != 0:
+        torch.distributed.barrier()
+
+    dist.print0(f'Loading network from "{network_pkl}"...')
+    with dnnlib.util.open_url(network_pkl, verbose=(dist.get_rank() == 0)) as f:
+        net = pickle.load(f)['ema'].to(device)
+
+    if dist.get_rank() == 0:
+        torch.distributed.barrier()
+    return net
+
+
+def split_seeds_across_ranks(seeds, max_batch_size):
+    """Split seeds into batches and assign batches to ranks (round-robin)."""
+    world = dist.get_world_size()
+    num_batches = ((len(seeds) - 1) // (max_batch_size * world) + 1) * world
+    all_batches = torch.as_tensor(seeds).tensor_split(num_batches)
+    return all_batches[dist.get_rank() :: world]
+
+
+@torch.no_grad()
+def generate_images_for_seeds_batch(
+    device,
+    edm_net,
+    batch_seeds,
+    class_idx=None,
+    **sampler_kwargs,
+):
+    """
+    Generate a single batch of images for given seeds.
+    Returns images tensor in [-1, 1], shape [B,C,H,W].
+    """
+    batch_size = len(batch_seeds)
+    rnd = StackedRandomGenerator(device, batch_seeds)
+
+    latents = rnd.randn([batch_size, edm_net.img_channels, edm_net.img_resolution, edm_net.img_resolution], device=device)
+
+    class_labels = None
+    if edm_net.label_dim:
+        class_labels = torch.eye(edm_net.label_dim, device=device)[
+            rnd.randint(edm_net.label_dim, size=[batch_size], device=device)
+        ]
+    if class_idx is not None:
+        class_labels[:, :] = 0
+        class_labels[:, class_idx] = 1
+
+    sampler_kwargs = {k: v for k, v in sampler_kwargs.items() if v is not None}
+    have_ablation = any(k in sampler_kwargs for k in ["solver", "discretization", "schedule", "scaling"])
+    sampler_fn = ablation_sampler if have_ablation else edm_sampler
+
+    images = sampler_fn(edm_net, latents, class_labels, randn_like=rnd.randn_like, **sampler_kwargs)
+    return images
+
+#----------------------------------------------------------------------------
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,130 @@
+[
+  {
+    "dataset": "CIFAR-10 Conditional",
+    "formulation": "VP",
+    "config": "A",
+    "expected_fid": 2.48,
+    "all_fids": [
+      2.5486138146641357,
+      2.502384115241115,
+      2.539990777309601
+    ],
+    "min_fid": 2.502384115241115,
+    "actual_fid": 2.502384115241115,
+    "nfe": 35,
+    "num_steps": 18,
+    "fid_ref": "fid_refs/cifar10-32x32.npz"
+  },
+  {
+    "dataset": "CIFAR-10 Conditional",
+    "formulation": "VE",
+    "config": "A",
+    "expected_fid": 3.11,
+    "all_fids": [
+      3.1910376683206936,
+      3.1552778755654614,
+      3.201536462474732
+    ],
+    "min_fid": 3.1552778755654614,
+    "actual_fid": 3.1552778755654614,
+    "nfe": 35,
+    "num_steps": 18,
+    "fid_ref": "fid_refs/cifar10-32x32.npz"
+  },
+  {
+    "dataset": "CIFAR-10 Unconditional",
+    "formulation": "VP",
+    "config": "A",
+    "expected_fid": 3.01,
+    "all_fids": [
+      3.0326992531549837,
+      3.0257334688177364,
+      3.0126896902857325
+    ],
+    "min_fid": 3.0126896902857325,
+    "actual_fid": 3.0126896902857325,
+    "nfe": 35,
+    "num_steps": 18,
+    "fid_ref": "fid_refs/cifar10-32x32.npz"
+  },
+  {
+    "dataset": "CIFAR-10 Unconditional",
+    "formulation": "VE",
+    "config": "A",
+    "expected_fid": 3.77,
+    "all_fids": [
+      3.840953839216065,
+      3.8524521608765285,
+      3.8533903393131905
+    ],
+    "min_fid": 3.840953839216065,
+    "actual_fid": 3.840953839216065,
+    "nfe": 35,
+    "num_steps": 18,
+    "fid_ref": "fid_refs/cifar10-32x32.npz"
+  },
+  {
+    "dataset": "FFHQ 64x64",
+    "formulation": "VP",
+    "config": "A",
+    "expected_fid": 3.39,
+    "all_fids": [
+      3.445153271504732,
+      3.435967950833072,
+      3.416335213265067
+    ],
+    "min_fid": 3.416335213265067,
+    "actual_fid": 3.416335213265067,
+    "nfe": 79,
+    "num_steps": 40,
+    "fid_ref": "fid_refs/ffhq-64x64.npz"
+  },
+  {
+    "dataset": "FFHQ 64x64",
+    "formulation": "VE",
+    "config": "A",
+    "expected_fid": 25.95,
+    "all_fids": [
+      25.90095379932664,
+      25.80628328534529,
+      25.525483452941607
+    ],
+    "min_fid": 25.525483452941607,
+    "actual_fid": 25.525483452941607,
+    "nfe": 79,
+    "num_steps": 40,
+    "fid_ref": "fid_refs/ffhq-64x64.npz"
+  },
+  {
+    "dataset": "AFHQv2 64x64",
+    "formulation": "VP",
+    "config": "A",
+    "expected_fid": 2.58,
+    "all_fids": [
+      2.6064384079912606,
+      2.6076170166786214,
+      2.5846933352487484
+    ],
+    "min_fid": 2.5846933352487484,
+    "actual_fid": 2.5846933352487484,
+    "nfe": 79,
+    "num_steps": 40,
+    "fid_ref": "fid_refs/afhqv2-64x64.npz"
+  },
+  {
+    "dataset": "AFHQv2 64x64",
+    "formulation": "VE",
+    "config": "A",
+    "expected_fid": 18.52,
+    "all_fids": [
+      18.446756304881102,
+      18.580798531843005,
+      18.324798774628132
+    ],
+    "min_fid": 18.324798774628132,
+    "actual_fid": 18.324798774628132,
+    "nfe": 79,
+    "num_steps": 40,
+    "fid_ref": "fid_refs/afhqv2-64x64.npz"
+  }
+]
