@@ -1,3 +1,5 @@
+I recalculate FIDs to reproduce Table 2 from the paper. I modify fid.py, generate.py and add reproduce_table2.py. I calculate FIDs on the fly, without saving images to the disk.
+
 ![Reproduction of EDM Table 2 rows A and F](assets/table2_repro_A_F-1.png)
 
 ## Elucidating the Design Space of Diffusion-Based Generative Models (EDM)<br><sub>Official PyTorch implementation of the NeurIPS 2022 paper</sub>
