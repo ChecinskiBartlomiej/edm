@@ -5,6 +5,14 @@ fid_refs
 edm.pdf
 Klaster_WIMRCMC_*
 *.sh
-table*
+table.aux
+table.log
+table.fdb_latexmk
+table.fls
+table.out
+table.synctex.gz
+table.pdf
+table.tex
+table.py
 inception_v3
 __pycache__

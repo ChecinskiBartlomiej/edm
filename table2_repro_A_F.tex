@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\small
+\begin{tabular}{lcccccccc}
+\toprule
+\multirow{3}{*}{\textbf{Training configuration}} & \multicolumn{4}{c}{\textbf{CIFAR-10 [29] at 32$\times$32}} & \multicolumn{2}{c}{\textbf{FFHQ [27] 64$\times$64}} & \multicolumn{2}{c}{\textbf{AFHQv2 [7] 64$\times$64}} \\
+ & \multicolumn{2}{c}{Conditional} & \multicolumn{2}{c}{Unconditional} & \multicolumn{2}{c}{Unconditional} & \multicolumn{2}{c}{Unconditional} \\
+ & VP & VE & VP & VE & VP & VE & VP & VE \\
+\midrule
+A  Baseline [49] (pre-trained) & \makecell{2.48\\\scriptsize 2.50} & \makecell{3.11\\\scriptsize 3.16} & \makecell{3.01\\\scriptsize 3.01} & \makecell{3.77\\\scriptsize 3.84} & \makecell{3.39\\\scriptsize 3.42} & \makecell{25.95\\\scriptsize 25.53} & \makecell{2.58\\\scriptsize 2.58} & \makecell{18.52\\\scriptsize 18.32} \\
+F  + Non-leaky augmentation & \makecell{1.79\\\scriptsize 1.82} & \makecell{1.79\\\scriptsize 1.81} & \makecell{1.97\\\scriptsize 1.96} & \makecell{1.98\\\scriptsize 1.97} & \makecell{2.39\\\scriptsize 2.37} & \makecell{2.53\\\scriptsize 2.54} & \makecell{1.96\\\scriptsize 2.04} & \makecell{2.16\\\scriptsize 2.17} \\
+\midrule
+\textbf{NFE} & 35 & 35 & 35 & 35 & 79 & 79 & 79 & 79 \\
+\bottomrule
+\end{tabular}
+\caption{Reproduction of rows A and F from Table 2. In each cell result from paper is at the top and my result is at the bottom}
+\label{tab:edm_repro_A_F}
+\end{table}
